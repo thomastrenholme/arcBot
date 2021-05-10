@@ -10,9 +10,19 @@ import easygui
 from tkinter import Label, Tk
 from datetime import datetime
 from datetime import timedelta
+import os
+import sys
 
 
 
+##For exe / python launch for selenium
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)
 
 
 
@@ -79,6 +89,8 @@ def easyGuiSetup():
                 masQue48 = True
             else:
                 masQue48 = False
+    else:
+        masQue48 = False
 
     return username, password, day, location, hour, masQue48
 
@@ -269,8 +281,7 @@ if(allInputFilled()):
     ##Run the program
 
     time.sleep(2)
-    PATH = "C:\Program Files (x86)\chromedriver.exe"
-    driver = webdriver.Chrome(PATH) 
+    driver = webdriver.Chrome(resource_path('./driver/chromedriver.exe'))
     driver.get("https://hdc-p-ols.spectrumng.net/sdsu/Login.aspx?isKiosk=False&AspxAutoDetectCookieSupport=1")
 
     usernameXPath = "//*[@id='ctl00_pageContentHolder_loginControl_UserName']"
