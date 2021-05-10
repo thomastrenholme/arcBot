@@ -1,27 +1,18 @@
 from datetime import datetime
 from datetime import timedelta
 
+import time
 
 
-def enrollInReservationMoreThan48HoursAway(hourGiven):
-    rightNow = datetime.now()
-    print(rightNow)
-    futureReservationTime = datetime.now() + timedelta(days=2)
-    
-    futureReservationTime = futureReservationTime.replace(hour=hourGiven, minute=0, second=0,microsecond=0)
-    print("Future reservation time is at: " + str(futureReservationTime))
+from tkinter import *
 
+root = Tk()
+prompt = "\nHello"
+label1 = Label(root, text=prompt, width=len(prompt))
+label1.pack()
 
-    waitingTime = futureReservationTime - datetime.now() - timedelta(days=2)
-    print(waitingTime)
+def close_after_2s():
+    root.destroy()
 
-    waitingTimeSeconds = waitingTime.total_seconds()
-
-    print(waitingTimeSeconds)
-
-    print("Waiting " + str(waitingTimeSeconds) + " seconds until able to make reservation")
-
-
-print((3000 + 30)/ 300)
-
-print (3000 % 300)
+root.after(2000, close_after_2s)
+root.mainloop()
